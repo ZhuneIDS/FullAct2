@@ -1,4 +1,4 @@
-// Tarea Class
+// clase tarea
 class Tarea {
     constructor(nombre) {
       this.nombre = nombre;
@@ -10,14 +10,14 @@ class Tarea {
     }
   }
   
-  // GestorDeTareas Class
+  // Clase gestor de tarea
   class GestorDeTareas {
     constructor() {
       this.tareas = JSON.parse(localStorage.getItem('tareas')) || [];
       this.render();
     }
   
-    agregarTarea(nombre) {
+    agregarTarea(nombre) { //metodo usado para agregar tareas a la lista
       if (nombre.trim() === '') {
         alert('La tarea no puede estar vacía');
         return;
@@ -28,7 +28,7 @@ class Tarea {
       this.render();
     }
   
-    editarTarea(index, nuevoNombre) {
+    editarTarea(index, nuevoNombre) { //metodo para editar
       if (nuevoNombre.trim() === '') {
         alert('El nombre de la tarea no puede estar vacío');
         return;
@@ -38,17 +38,17 @@ class Tarea {
       this.render();
     }
   
-    eliminarTarea(index) {
+    eliminarTarea(index) { // metodo eliminar
       this.tareas.splice(index, 1);
       this.guardarTareas();
       this.render();
     }
   
-    guardarTareas() {
+    guardarTareas() { //metodo para guardar en jsonpara poder agregar a local storage
       localStorage.setItem('tareas', JSON.stringify(this.tareas));
     }
   
-    render() {
+    render() { //se llama render porque estoy traumado ya con 3d react y swift.
       const taskList = document.getElementById('taskList');
       taskList.innerHTML = '';
   
@@ -64,18 +64,20 @@ class Tarea {
           </div>
         `;
   
-        // listener para el click de completado de tarea
+        // listener para poder hacer click en el texto y que se pueda completar la tarea
         li.querySelector('span').addEventListener('click', () => {
-          tarea.completar();
-          this.guardarTareas();
-          this.render();
+          tarea.completar(); // llama los diferentes metodos
+          this.guardarTareas(); // llama los diferentes metodos
+          this.render(); // llama los diferentes metodos
         });
   
+        //listener para poder editar la tarea
         li.querySelector('.edit-btn').addEventListener('click', () => {
           const nuevoNombre = prompt('Editar Tarea:', tarea.nombre);
           if (nuevoNombre !== null) this.editarTarea(index, nuevoNombre);
         });
   
+        //listener para poder borrar la tarea
         li.querySelector('.delete-btn').addEventListener('click', () => {
           if (confirm('¿Estás seguro de eliminar esta tarea?')) {
             this.eliminarTarea(index);

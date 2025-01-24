@@ -7,7 +7,7 @@ body {
   }
   
   .container {
-    max-width: 600px;
+    max-width: 600px; /* hardcodeado, la responsividad viene despues */
     margin: 50px auto;
     padding: 20px;
     background-color: #ffffff;
@@ -20,13 +20,13 @@ body {
   }
   
   .input-container {
-    display: flex;
+    display: flex; /*usando flex box envez de grid */
     justify-content: space-between;
     margin-bottom: 20px;
   }
   
   #taskInput {
-    flex: 1;
+    flex: 1; /* estilos que se aplicaran a todos los decendientes del contenedor flex*/
     padding: 10px;
     margin-right: 10px;
     border: 1px solid #ccc;
@@ -85,3 +85,46 @@ body {
   .delete-btn:hover {
     background-color: #c82333;
   }
+
+/* media queries */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  #taskInput {
+    font-size: 14px;
+  }
+
+  #addTaskBtn {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+    margin: 20px auto;
+  }
+
+  .input-container {
+    flex-direction: column;
+  }
+
+  #taskInput {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  #addTaskBtn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 800px;
+  }
+}
